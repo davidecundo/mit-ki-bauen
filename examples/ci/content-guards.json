@@ -1,0 +1,20 @@
+{
+  "root": ".",
+  "buildDir": "dist",
+  "ignoreDirs": [".git", "node_modules", ".astro"],
+  "ignoreFiles": ["package-lock.json"],
+  "forbiddenWords": [
+    "Beispiel-Kunde AG",
+    "Projekt Geheim",
+    "nur intern"
+  ],
+  "allowPatterns": [
+    "https://erlaubt\\.example\\.com/[^\\s\"')]*"
+  ],
+  "placeholderPatterns": [
+    "[NEED",
+    "[TODO",
+    "[Platzhalter",
+    "lorem ipsum"
+  ]
+}

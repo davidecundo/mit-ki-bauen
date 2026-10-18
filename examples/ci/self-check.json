@@ -1,0 +1,7 @@
+{
+  "root": "../..",
+  "buildDir": "dist",
+  "ignoreDirs": [".git", "node_modules"],
+  "ignoreFiles": ["examples/ci/content-guards.json"],
+  "forbiddenWords": ["nur intern", "Projekt Geheim"]
+}
