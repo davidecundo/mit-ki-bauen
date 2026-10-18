@@ -1,0 +1,38 @@
+# Example workflow: build the site, then run the content guards.
+# Copy this file to .github/workflows/ in your repo, plus scripts/check-content.mjs
+# and content-guards.json to the repo root. Adjust the build steps to your stack.
+name: Content guards
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: content-guards-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  guards:
+    name: Prüfen und bauen
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Content guards
+        run: node scripts/check-content.mjs --config content-guards.json --require-build
